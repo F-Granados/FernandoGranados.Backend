@@ -14,10 +14,15 @@ namespace Bussiness
             return Persona.Listar();
         }
 
-        public List<PersonaEntity> Filtrar(PersonaEntity entidad)
+
+        public List<PersonaEntity> ListarPorId(int id)
         {
-            return Persona.Filtrar(entidad);
+            return Persona.ListarPorId(id);
         }
+        //public List<PersonaEntity> Filtrar(PersonaEntity entidad)
+        //{
+        //    return Persona.Filtrar(entidad);
+        //}
 
         public string Registrar(PersonaEntity entidad)
         {
@@ -31,9 +36,9 @@ namespace Bussiness
         }
 
 
-        public string Eliminar(PersonaEntity entidad)
+        public string Eliminar(int id)
         {
-            return Persona.Eliminar(entidad);
+            return Persona.Eliminar(id);
         }
 
 
@@ -42,16 +47,16 @@ namespace Bussiness
 
 
 
-        public long registrar (Persona persona)
-        {
-            Persona personaData = new Persona();
-            return 1;
-        }
+        //public long registrar (Persona persona)
+        //{
+        //    Persona personaData = new Persona();
+        //    return 1;
+        //}
 
-        public PersonaEntity ListarPorId(int id)
-        {
-            return Persona.ListarPorId(id);
-        }
+        //public PersonaEntity ListarPorId(int id)
+        //{
+        //    return Persona.ListarPorId(id);
+        //}
 
         //public List<PersonaEntity> listar()
         //{

@@ -13,6 +13,6 @@ namespace Entity
         public string Nombre1 { get; set; }
         public string Nombre2 { get; set; }
         public string NombreCompleto { get; set; }
-        public DateTime FchNac { get; set; }
+        public string FchNac { get; set; }
     }
 }

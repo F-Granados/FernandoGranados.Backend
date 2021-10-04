@@ -15,43 +15,34 @@ namespace PersonasAPI.Controllers
     [AllowAnonymous]
     public class HijoController : Controller
     {
-        [HttpGet("Listar")]
-        public List<HijoEntity> Listar()
+        [HttpGet("{id:int}")]
+        public List<HijoEntity> Listar(int id)
         {
             HijoBussiness oHijo = new HijoBussiness();
-            return oHijo.Listar();
+            return oHijo.Listar(id);
         }
-        //ListarPorId
-
-        //[HttpGet("ListarId/{id}")]
-        //public HijoEntity ListarId(int id)
-        //{
-
-        //    HijoEntity oPersona = new HijoEntity();
-        //    return oPersona.ListarPorId(id);
-        //}
 
 
-        [HttpPost("Filtrar")]
-        public List<HijoEntity> Filtrar([FromBody] HijoEntity entidad)
+        [HttpPost("Filtrar/{id:int}")]
+        public List<HijoEntity> Filtrarhijo(int id)
         {
 
             HijoBussiness oHijo = new HijoBussiness();
-            return oHijo.Filtrar(entidad);
+            return oHijo.Listarhijo(id);
         }
 
 
         [HttpPost("Registrar")]
-        public JsonResult Registrar([FromBody] HijoEntity entidad)
+        public string Registrar([FromBody] HijoEntity entidad)
         {
 
-            HijoBussiness oPersona = new HijoBussiness();
-            var resultado = oPersona.Registrar(entidad);
-            string json = "{'resultado':" + resultado + "}";
-            var jsonObject = new JsonResult(json);
-
-
-            return jsonObject;
+            HijoBussiness oHijo = new HijoBussiness();
+            return oHijo.Registrar(entidad);
+            //HijoBussiness oPersona = new HijoBussiness();
+            //var resultado = oPersona.Registrar(entidad);
+            //string json = "{'resultado':" + resultado + "}";
+            //var jsonObject = new JsonResult(json);
+            //return jsonObject;
 
         }
 
@@ -65,12 +56,12 @@ namespace PersonasAPI.Controllers
         }
 
 
-        [HttpDelete("Eliminar")]
-        public string Eliminar([FromBody] HijoEntity entidad)
+        [HttpDelete("{id:int}")]
+        public string Eliminar(int id)
         {
 
             HijoBussiness oPersona = new HijoBussiness();
-            return oPersona.Eliminar(entidad);
+            return oPersona.Eliminar(id);
         }
     }
 }

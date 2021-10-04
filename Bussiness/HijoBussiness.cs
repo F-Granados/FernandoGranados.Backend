@@ -9,14 +9,14 @@ namespace Bussiness
     public class HijoBussiness
     {
 
-        public List<HijoEntity> Listar()
+        public List<HijoEntity> Listar(int id)
         {
-            return Hijo.Listar();
+            return Hijo.FiltrarHijo(id);
         }
 
-        public List<HijoEntity> Filtrar(HijoEntity entidad)
+        public List<HijoEntity> Listarhijo(int id)
         {
-            return Hijo.Filtrar(entidad);
+            return Hijo.FiltrarHijosId(id);
         }
 
         public string Registrar(HijoEntity entidad)
@@ -31,9 +31,9 @@ namespace Bussiness
         }
 
 
-        public string Eliminar(HijoEntity entidad)
+        public string Eliminar(int id)
         {
-            return Hijo.Eliminar(entidad);
+            return Hijo.Eliminar(id);
         }
 
 

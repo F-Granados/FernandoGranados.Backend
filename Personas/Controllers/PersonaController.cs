@@ -25,40 +25,46 @@ namespace PersonasAPI.Controllers
         }
         //ListarPorId
 
-        [HttpGet("ListarId/{id}")]
-        public PersonaEntity ListarId(int id) { 
+        [HttpGet("{id:int}")]
+        public List<PersonaEntity> ListarPorId(int id) { 
         
             PersonasBussiness oPersona = new PersonasBussiness();
             return oPersona.ListarPorId(id);
         }
 
 
-        [HttpPost("Filtrar")]
-        public List<PersonaEntity> Filtrar([FromBody] PersonaEntity entidad)
-        {
+        //[HttpPost("Filtrar")]
+        //public List<PersonaEntity> Filtrar([FromBody] PersonaEntity entidad)
+        //{
 
+        //    PersonasBussiness oPersona = new PersonasBussiness();
+        //    return oPersona.Filtrar(entidad);
+        //}
+
+
+        //[HttpPost("Registrar")]
+        //public JsonResult Registrar([FromBody] PersonaEntity entidad)
+        //{
+
+        //    PersonasBussiness oPersona = new PersonasBussiness();
+        //   var resultado =  oPersona.Registrar(entidad);
+        //    string json =  "{'resultado':"+ resultado + "}";
+        //    var jsonObject = new JsonResult(json);
+
+
+        //    return jsonObject;
+
+        //}
+
+        [HttpPost]
+        public string Registrar([FromBody] PersonaEntity entidad)
+        {
             PersonasBussiness oPersona = new PersonasBussiness();
-            return oPersona.Filtrar(entidad);
+            return oPersona.Registrar(entidad);
         }
 
 
-        [HttpPost("Registrar")]
-        public JsonResult Registrar([FromBody] PersonaEntity entidad)
-        {
-
-            PersonasBussiness oPersona = new PersonasBussiness();
-           var resultado =  oPersona.Registrar(entidad);
-            string json =  "{'resultado':"+ resultado + "}";
-            var jsonObject = new JsonResult(json);
-
-          
-            return jsonObject;
-
-        }
-
-
-
-    [HttpPut("Modificar")]
+        [HttpPut("Modificar")]
         public string Modificar([FromBody] PersonaEntity entidad)
         {
             PersonasBussiness oPersona = new PersonasBussiness();
@@ -66,12 +72,14 @@ namespace PersonasAPI.Controllers
         }
 
 
-        [HttpDelete("Eliminar")]
-        public string Eliminar([FromBody] PersonaEntity entidad)
+        [HttpDelete("{id:int}")]
+        public string Eliminar(int id)
         {
+            var Opersona = new PersonasBussiness();
+            return Opersona.Eliminar(id);
 
-            PersonasBussiness oPersona = new PersonasBussiness();
-            return oPersona.Eliminar(entidad);
+            //PersonasBussiness oPersona = new PersonasBussiness();
+            //return oPersona.Eliminar(entidad);
         }
 
 

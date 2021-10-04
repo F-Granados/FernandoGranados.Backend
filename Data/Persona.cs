@@ -38,65 +38,66 @@ namespace Data
             return lista;
         }
 
-        public static PersonaEntity ListarPorId(int id)
+        public static List<PersonaEntity>  ListarPorId(int id)
         {
-           
+            var lista = new List<PersonaEntity>();
             string cadenaConexion = @"Data Source=LAPTOP-HE8D4VTA\SQLEXPRESS;Initial Catalog=FernandoGranados1;Integrated Security=True";
             SqlConnection cn = new SqlConnection(cadenaConexion);
             cn.Open(); 
-            SqlCommand cmd = new SqlCommand("select * from PERSONAL where idPersonal=1", cn);
-            cmd.CommandType = CommandType.Text;
+            SqlCommand cmd = new SqlCommand("spListar_Personalid", cn);
+            cmd.Parameters.Add(new SqlParameter("@idpersonal",SqlDbType.VarChar,100)).Value= id;
+            cmd.CommandType = CommandType.StoredProcedure;
             SqlDataReader drlector = cmd.ExecuteReader();
-            PersonaEntity oPersonaEntity = new PersonaEntity();
-            while (drlector.Read())
+               while (drlector.Read())
             {
-              
+                PersonaEntity oPersonaEntity = new PersonaEntity();
                 oPersonaEntity.IdPersonal = Convert.ToInt32(drlector["IdPersonal"]);
                 oPersonaEntity.ApPaterno = drlector["ApPaterno"].ToString().Trim();
                 oPersonaEntity.ApMaterno = drlector["ApMaterno"].ToString().Trim();
                 oPersonaEntity.Nombre1 = drlector["Nombre1"].ToString().Trim();
                 oPersonaEntity.Nombre2 = drlector["Nombre2"].ToString().Trim();
-                //oPersonaEntity.NombreCompleto = drlector["NombreCompleto"].ToString().Trim();
-                //oPersonaEntity.FchNac = Convert.ToDateTime(drlector["FchNac"]).ToString("dd/MM/yyyy");
-                //oPersonaEntity.FchIngreso = Convert.ToDateTime(drlector["FchIngreso"]).ToString("dd/MM/yyyy");
+                oPersonaEntity.NombreCompleto = drlector["NombreCompleto"].ToString().Trim();
+                oPersonaEntity.FchNac = Convert.ToDateTime(drlector["FchNac"]).ToString("dd/MM/yyyy");
+                oPersonaEntity.FchIngreso = Convert.ToDateTime(drlector["FchIngreso"]).ToString("dd/MM/yyyy");
                 oPersonaEntity.Dni = drlector["Dni"].ToString().Trim();
+                lista.Add(oPersonaEntity);
               
 
 
             }
-            return oPersonaEntity;
-        }
-
-        public static List<PersonaEntity> Filtrar(PersonaEntity entidad)
-        {
-            var lista = new List<PersonaEntity>();
-            string cadenaConexion = @"Data Source=LAPTOP-HE8D4VTA\SQLEXPRESS;Initial Catalog=FernandoGranados1;Integrated Security=True";
-            SqlConnection cn = new SqlConnection(cadenaConexion);
-            cn.Open();
-            SqlCommand cmd = new SqlCommand("spfiltrarpersona");
-            cmd.Parameters.Add(new SqlParameter("@ApPaterno", SqlDbType.VarChar, 50)).Value = entidad.ApPaterno;
-            cmd.Parameters.Add(new SqlParameter("@ApMaterno", SqlDbType.VarChar, 50)).Value = entidad.ApMaterno;
-
-            cmd.CommandType = CommandType.StoredProcedure;
-            SqlDataReader drlector = cmd.ExecuteReader();
-
-            while (drlector.Read())
-            {
-                PersonaEntity oPersonaEntity = new PersonaEntity();
-                oPersonaEntity.IdPersonal = Convert.ToInt32(drlector["Id_personal"]);
-                oPersonaEntity.ApPaterno = drlector["Apeliido_parterno"].ToString().Trim();
-                oPersonaEntity.ApMaterno = drlector["Apellido:materno"].ToString().Trim();
-                oPersonaEntity.Nombre1 = drlector["Nombre_1"].ToString().Trim();
-                oPersonaEntity.Nombre2 = drlector["Nombre_2"].ToString().Trim();
-                oPersonaEntity.NombreCompleto = drlector["Nombre"].ToString().Trim();
-                oPersonaEntity.FchNac = Convert.ToDateTime(drlector["Fecha_Nacimiento"]).ToString("dd/MM/yyyy");
-                oPersonaEntity.FchIngreso = Convert.ToDateTime(drlector["Fecha_ingreso"]).ToString("dd/MM/yyyy");
-                oPersonaEntity.Dni = drlector["Dni"].ToString().Trim();
-                lista.Add(oPersonaEntity);
-
-            }
             return lista;
         }
+
+        //public static List<PersonaEntity> Filtrar(PersonaEntity entidad)
+        //{
+        //    var lista = new List<PersonaEntity>();
+        //    string cadenaConexion = @"Data Source=LAPTOP-HE8D4VTA\SQLEXPRESS;Initial Catalog=FernandoGranados1;Integrated Security=True";
+        //    SqlConnection cn = new SqlConnection(cadenaConexion);
+        //    cn.Open();
+        //    SqlCommand cmd = new SqlCommand("spfiltrarpersona");
+        //    cmd.Parameters.Add(new SqlParameter("@ApPaterno", SqlDbType.VarChar, 50)).Value = entidad.ApPaterno;
+        //    cmd.Parameters.Add(new SqlParameter("@ApMaterno", SqlDbType.VarChar, 50)).Value = entidad.ApMaterno;
+
+        //    cmd.CommandType = CommandType.StoredProcedure;
+        //    SqlDataReader drlector = cmd.ExecuteReader();
+
+        //    while (drlector.Read())
+        //    {
+        //        PersonaEntity oPersonaEntity = new PersonaEntity();
+        //        oPersonaEntity.IdPersonal = Convert.ToInt32(drlector["Id_personal"]);
+        //        oPersonaEntity.ApPaterno = drlector["Apeliido_parterno"].ToString().Trim();
+        //        oPersonaEntity.ApMaterno = drlector["Apellido:materno"].ToString().Trim();
+        //        oPersonaEntity.Nombre1 = drlector["Nombre_1"].ToString().Trim();
+        //        oPersonaEntity.Nombre2 = drlector["Nombre_2"].ToString().Trim();
+        //        oPersonaEntity.NombreCompleto = drlector["Nombre"].ToString().Trim();
+        //        oPersonaEntity.FchNac = Convert.ToDateTime(drlector["Fecha_Nacimiento"]).ToString("dd/MM/yyyy");
+        //        oPersonaEntity.FchIngreso = Convert.ToDateTime(drlector["Fecha_ingreso"]).ToString("dd/MM/yyyy");
+        //        oPersonaEntity.Dni = drlector["Dni"].ToString().Trim();
+        //        lista.Add(oPersonaEntity);
+
+        //    }
+        //    return lista;
+        //}
 
 
         public static string Registrar(PersonaEntity entidad)
@@ -111,8 +112,8 @@ namespace Data
             cmd.Parameters.Add(new SqlParameter("@ApMaterno", SqlDbType.VarChar, 50)).Value = entidad.ApMaterno;
             cmd.Parameters.Add(new SqlParameter("@Nombre1", SqlDbType.VarChar, 50)).Value = entidad.Nombre1;
             cmd.Parameters.Add(new SqlParameter("@Nombre2", SqlDbType.VarChar, 50)).Value = entidad.Nombre2;
-            cmd.Parameters.Add(new SqlParameter("@FchNac", SqlDbType.DateTime)).Value = "1/1/9999 ";
-            cmd.Parameters.Add(new SqlParameter("@FchIngreso", SqlDbType.DateTime)).Value = "1/1/9999";
+            cmd.Parameters.Add(new SqlParameter("@FchNac", SqlDbType.DateTime)).Value =DateTime.Parse(entidad.FchNac);
+            cmd.Parameters.Add(new SqlParameter("@FchIngreso", SqlDbType.DateTime)).Value =DateTime.Parse(entidad.FchIngreso) ;
             cmd.Parameters.Add(new SqlParameter("@Dni", SqlDbType.VarChar, 50)).Value = entidad.Dni;
 
             cmd.CommandType = CommandType.StoredProcedure;
@@ -146,7 +147,7 @@ namespace Data
         }
 
 
-        public static string Eliminar(PersonaEntity entidad)
+        public static string Eliminar(int id)
         {
 
             var lista = new List<PersonaEntity>();
@@ -155,7 +156,7 @@ namespace Data
             cn.Open();
 
             SqlCommand cmd = new SqlCommand("speliminarpersonal", cn);
-            cmd.Parameters.Add(new SqlParameter("@IdPersonal", SqlDbType.Int)).Value = entidad.IdPersonal;
+            cmd.Parameters.Add(new SqlParameter("@IdPersonal", SqlDbType.Int)).Value = id;
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.ExecuteNonQuery();
