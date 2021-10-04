@@ -11,13 +11,15 @@ using System.Text.Json;
 
 namespace PersonasAPI.Controllers
 {
-    [Route("api/[controller]")]
+    //[Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     [AllowAnonymous]
     public class PersonaController : ControllerBase
     {
 
-        [HttpGet("Listar")]
+        //[HttpGet("Listar")]
+        [HttpGet]
         public List<PersonaEntity> Listar()
         {
             PersonasBussiness oPersona = new PersonasBussiness();

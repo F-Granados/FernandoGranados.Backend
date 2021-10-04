@@ -13,7 +13,7 @@ namespace Data
         public static List<HijoEntity> Listar()
         {
             var lista = new List<HijoEntity>();
-            string cadenaConexion = @"Data Source=LAPTOP-HE8D4VTA\SQLEXPRESS;Initial Catalog=FernandoGranados1;Integrated Security=True";
+            string cadenaConexion = @"Data Source=LAPTOP-HE8D4VTA\SQLEXPRESS;Initial Catalog=FernandoGranados;Integrated Security=True";
             SqlConnection cn = new SqlConnection(cadenaConexion);
             cn.Open();
             SqlCommand cmd = new SqlCommand("splistar_hijo", cn);
@@ -24,7 +24,7 @@ namespace Data
             {
                 HijoEntity oHijoEntity = new HijoEntity();
                 oHijoEntity.IdPersonal = Convert.ToInt32(drlector["IdPersonal"]);
-                oHijoEntity.IdDerhab = Convert.ToInt32(drlector["IdDerhab"]);
+                oHijoEntity.IdDerHab = Convert.ToInt32(drlector["IdDerHab"]);
                 oHijoEntity.ApPaterno = drlector["ApPaterno"].ToString().Trim();
                 oHijoEntity.ApMaterno = drlector["ApMaterno"].ToString().Trim();
                 oHijoEntity.Nombre1 = drlector["Nombre1"].ToString().Trim();
@@ -42,7 +42,7 @@ namespace Data
         public static List<HijoEntity> FiltrarHijo(int id)
         {
             var lista = new List<HijoEntity>();
-            string cadenaConexion = @"Data Source=LAPTOP-HE8D4VTA\SQLEXPRESS;Initial Catalog=FernandoGranados1;Integrated Security=True";
+            string cadenaConexion = @"Data Source=LAPTOP-HE8D4VTA\SQLEXPRESS;Initial Catalog=FernandoGranados;Integrated Security=True";
             SqlConnection cn = new SqlConnection(cadenaConexion);
             cn.Open();
             SqlCommand cmd = new SqlCommand("spfiltrarhijo");
@@ -54,7 +54,7 @@ namespace Data
             while (drlector.Read())
             {
                 HijoEntity oHijoEntity = new HijoEntity();
-                oHijoEntity.IdDerhab = Convert.ToInt32(drlector["IdDerhab"]);
+                oHijoEntity.IdDerHab = Convert.ToInt32(drlector["IdDerHab"]);
                 oHijoEntity.ApPaterno = drlector["Apeliido_parterno"].ToString().Trim();
                 oHijoEntity.ApMaterno = drlector["Apellido:materno"].ToString().Trim();
                 oHijoEntity.Nombre1 = drlector["Nombre_1"].ToString().Trim();
@@ -70,7 +70,7 @@ namespace Data
         public static List<HijoEntity> FiltrarHijosId(int id)
         {
             var lista = new List<HijoEntity>();
-            string cadenaConexion = @"Data Source=LAPTOP-HE8D4VTA\SQLEXPRESS;Initial Catalog=FernandoGranados1;Integrated Security=True";
+            string cadenaConexion = @"Data Source=LAPTOP-HE8D4VTA\SQLEXPRESS;Initial Catalog=FernandoGranados;Integrated Security=True";
 
             SqlConnection cn = new SqlConnection(cadenaConexion);
             cn.Open();
@@ -83,7 +83,7 @@ namespace Data
             while (drlector.Read())
             {
                 HijoEntity oHijoEntity = new HijoEntity();
-                oHijoEntity.IdDerhab = Convert.ToInt32(drlector["IdDerHab"]);
+                oHijoEntity.IdDerHab = Convert.ToInt32(drlector["IdDerHab"]);
                 oHijoEntity.IdPersonal = Convert.ToInt32(drlector["IdPersonal"]);
                 oHijoEntity.ApPaterno = drlector["ApPaterno"].ToString().Trim();
                 oHijoEntity.ApMaterno = drlector["ApMaterno"].ToString().Trim();
@@ -101,7 +101,7 @@ namespace Data
         public static string Registrar(HijoEntity entidad)
         {
             var lista = new List<HijoEntity>();
-            string cadenaConexion = @"Data Source=LAPTOP-HE8D4VTA\SQLEXPRESS;Initial Catalog=FernandoGranados1;Integrated Security=True";
+            string cadenaConexion = @"Data Source=LAPTOP-HE8D4VTA\SQLEXPRESS;Initial Catalog=FernandoGranados;Integrated Security=True";
             SqlConnection cn = new SqlConnection(cadenaConexion);
             cn.Open();
 
@@ -127,12 +127,12 @@ namespace Data
         {
 
             var lista = new List<HijoEntity>();
-            string cadenaConexion = @"Data Source=LAPTOP-HE8D4VTA\SQLEXPRESS;Initial Catalog=FernandoGranados1;Integrated Security=True";
+            string cadenaConexion = @"Data Source=LAPTOP-HE8D4VTA\SQLEXPRESS;Initial Catalog=FernandoGranados;Integrated Security=True";
             SqlConnection cn = new SqlConnection(cadenaConexion);
             cn.Open();
 
             SqlCommand cmd = new SqlCommand("spmodificarhijo", cn);
-            cmd.Parameters.Add(new SqlParameter("@idderhab", SqlDbType.Int)).Value = entidad.IdDerhab;
+            cmd.Parameters.Add(new SqlParameter("@idderhab", SqlDbType.Int)).Value = entidad.IdDerHab;
             cmd.Parameters.Add(new SqlParameter("@idpersonal", SqlDbType.Int)).Value = entidad.IdPersonal;
             cmd.Parameters.Add(new SqlParameter("@appaterno", SqlDbType.VarChar, 50)).Value = entidad.ApPaterno;
             cmd.Parameters.Add(new SqlParameter("@apmaterno", SqlDbType.VarChar, 50)).Value = entidad.ApMaterno;
@@ -150,7 +150,7 @@ namespace Data
         {
 
             var lista = new List<HijoEntity>();
-            string cadenaConexion = @"Data Source=LAPTOP-HE8D4VTA\SQLEXPRESS;Initial Catalog=FernandoGranados1;Integrated Security=True";
+            string cadenaConexion = @"Data Source=LAPTOP-HE8D4VTA\SQLEXPRESS;Initial Catalog=FernandoGranados;Integrated Security=True";
             SqlConnection cn = new SqlConnection(cadenaConexion);
             cn.Open();
 

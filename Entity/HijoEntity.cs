@@ -6,7 +6,7 @@ namespace Entity
 {
     public class HijoEntity
     {
-        public int IdDerhab { get; set; }
+        public int IdDerHab { get; set; }
         public int IdPersonal { get; set; }
         public string ApPaterno { get; set; }
         public string ApMaterno { get; set; }

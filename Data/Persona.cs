@@ -12,7 +12,7 @@ namespace Data
         public static List<PersonaEntity> Listar()
         {
             var lista = new List<PersonaEntity>();
-            string cadenaConexion = @"Data Source=LAPTOP-HE8D4VTA\SQLEXPRESS;Initial Catalog=FernandoGranados1;Integrated Security=True";
+            string cadenaConexion = @"Data Source=LAPTOP-HE8D4VTA\SQLEXPRESS;Initial Catalog=FernandoGranados;Integrated Security=True";
             SqlConnection cn = new SqlConnection(cadenaConexion);
             cn.Open();
             SqlCommand cmd = new SqlCommand("splistartodo", cn);
@@ -41,7 +41,7 @@ namespace Data
         public static List<PersonaEntity>  ListarPorId(int id)
         {
             var lista = new List<PersonaEntity>();
-            string cadenaConexion = @"Data Source=LAPTOP-HE8D4VTA\SQLEXPRESS;Initial Catalog=FernandoGranados1;Integrated Security=True";
+            string cadenaConexion = @"Data Source=LAPTOP-HE8D4VTA\SQLEXPRESS;Initial Catalog=FernandoGranados;Integrated Security=True";
             SqlConnection cn = new SqlConnection(cadenaConexion);
             cn.Open(); 
             SqlCommand cmd = new SqlCommand("spListar_Personalid", cn);
@@ -103,7 +103,7 @@ namespace Data
         public static string Registrar(PersonaEntity entidad)
         {
             var lista = new List<PersonaEntity>();
-            string cadenaConexion = @"Data Source=LAPTOP-HE8D4VTA\SQLEXPRESS;Initial Catalog=FernandoGranados1;Integrated Security=True";
+            string cadenaConexion = @"Data Source=LAPTOP-HE8D4VTA\SQLEXPRESS;Initial Catalog=FernandoGranados;Integrated Security=True";
             SqlConnection cn = new SqlConnection(cadenaConexion);
             cn.Open();
 
@@ -128,7 +128,7 @@ namespace Data
         {
 
             var lista = new List<PersonaEntity>();
-            string cadenaConexion = @"Data Source=LAPTOP-HE8D4VTA\SQLEXPRESS;Initial Catalog=FernandoGranados1;Integrated Security=True";
+            string cadenaConexion = @"Data Source=LAPTOP-HE8D4VTA\SQLEXPRESS;Initial Catalog=FernandoGranados;Integrated Security=True";
             SqlConnection cn = new SqlConnection(cadenaConexion);
             cn.Open();
 
@@ -151,7 +151,7 @@ namespace Data
         {
 
             var lista = new List<PersonaEntity>();
-            string cadenaConexion = @"Data Source=LAPTOP-HE8D4VTA\SQLEXPRESS;Initial Catalog=FernandoGranados1;Integrated Security=True";
+            string cadenaConexion = @"Data Source=LAPTOP-HE8D4VTA\SQLEXPRESS;Initial Catalog=FernandoGranados;Integrated Security=True";
             SqlConnection cn = new SqlConnection(cadenaConexion);
             cn.Open();
 
