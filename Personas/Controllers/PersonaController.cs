@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -26,37 +26,15 @@ namespace PersonasAPI.Controllers
             return oPersona.Listar();
         }
         //ListarPorId
-
+        //persona/4
         [HttpGet("{id:int}")]
+        
         public List<PersonaEntity> ListarPorId(int id) { 
         
             PersonasBussiness oPersona = new PersonasBussiness();
             return oPersona.ListarPorId(id);
         }
 
-
-        //[HttpPost("Filtrar")]
-        //public List<PersonaEntity> Filtrar([FromBody] PersonaEntity entidad)
-        //{
-
-        //    PersonasBussiness oPersona = new PersonasBussiness();
-        //    return oPersona.Filtrar(entidad);
-        //}
-
-
-        //[HttpPost("Registrar")]
-        //public JsonResult Registrar([FromBody] PersonaEntity entidad)
-        //{
-
-        //    PersonasBussiness oPersona = new PersonasBussiness();
-        //   var resultado =  oPersona.Registrar(entidad);
-        //    string json =  "{'resultado':"+ resultado + "}";
-        //    var jsonObject = new JsonResult(json);
-
-
-        //    return jsonObject;
-
-        //}
 
         [HttpPost]
         public string Registrar([FromBody] PersonaEntity entidad)
@@ -84,8 +62,7 @@ namespace PersonasAPI.Controllers
             //return oPersona.Eliminar(entidad);
         }
 
-
-
+        
 
         //[HttpGet]
         //public IEnumerable<PersonaEntity> Get()

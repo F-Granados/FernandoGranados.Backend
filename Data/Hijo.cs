@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Entity;
@@ -29,7 +29,6 @@ namespace Data
                 oHijoEntity.ApMaterno = drlector["ApMaterno"].ToString().Trim();
                 oHijoEntity.Nombre1 = drlector["Nombre1"].ToString().Trim();
                 oHijoEntity.Nombre2 = drlector["Nombre2"].ToString().Trim();
-                oHijoEntity.NombreCompleto = drlector["NombreCompleto"].ToString().Trim();
                 oHijoEntity.FchNac = Convert.ToDateTime(drlector["FchNac"]).ToString("dd/MM/yyyy");
                 lista.Add(oHijoEntity);
 
@@ -45,8 +44,9 @@ namespace Data
             string cadenaConexion = @"Data Source=LAPTOP-HE8D4VTA\SQLEXPRESS;Initial Catalog=FernandoGranados;Integrated Security=True";
             SqlConnection cn = new SqlConnection(cadenaConexion);
             cn.Open();
-            SqlCommand cmd = new SqlCommand("spfiltrarhijo");
-            cmd.Parameters.Add(new SqlParameter("@IdPersonal", SqlDbType.VarChar, 50)).Value = id;
+            SqlCommand cmd = new SqlCommand("spfiltrarhijo", cn);
+
+            cmd.Parameters.Add(new SqlParameter("@idpersonal", SqlDbType.VarChar, 50)).Value = id;
 
             cmd.CommandType = CommandType.StoredProcedure;
             SqlDataReader drlector = cmd.ExecuteReader();
@@ -55,12 +55,12 @@ namespace Data
             {
                 HijoEntity oHijoEntity = new HijoEntity();
                 oHijoEntity.IdDerHab = Convert.ToInt32(drlector["IdDerHab"]);
-                oHijoEntity.ApPaterno = drlector["Apeliido_parterno"].ToString().Trim();
-                oHijoEntity.ApMaterno = drlector["Apellido:materno"].ToString().Trim();
-                oHijoEntity.Nombre1 = drlector["Nombre_1"].ToString().Trim();
-                oHijoEntity.Nombre2 = drlector["Nombre_2"].ToString().Trim();
-                oHijoEntity.NombreCompleto = drlector["NombreCompleto"].ToString().Trim();
-                oHijoEntity.FchNac = Convert.ToDateTime(drlector["FchNac"]).ToString("dd/MM/yyyy");
+                oHijoEntity.IdPersonal = Convert.ToInt32(drlector["IdPersonal"]);
+                oHijoEntity.ApPaterno = drlector["ApPaterno"].ToString().Trim();
+                oHijoEntity.ApMaterno = drlector["ApMaterno"].ToString().Trim();
+                oHijoEntity.Nombre1 = drlector["Nombre1"].ToString().Trim();
+                oHijoEntity.Nombre2 = drlector["Nombre2"].ToString().Trim();
+                //oHijoEntity.FchNac = Convert.ToDateTime(drlector["FchNac"]).ToString("dd/MM/yyyy");
                 lista.Add(oHijoEntity);
 
             }
@@ -89,7 +89,6 @@ namespace Data
                 oHijoEntity.ApMaterno = drlector["ApMaterno"].ToString().Trim();
                 oHijoEntity.Nombre1 = drlector["Nombre1"].ToString().Trim();
                 oHijoEntity.Nombre2 = drlector["Nombre2"].ToString().Trim();
-                oHijoEntity.NombreCompleto = drlector["NombreCompleto"].ToString().Trim();
                 oHijoEntity.FchNac = Convert.ToDateTime(drlector["FchNac"]).ToString("dd/MM/yyyy");
 
                 lista.Add(oHijoEntity);

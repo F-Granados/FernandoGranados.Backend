@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,8 @@ using Bussiness;
 namespace PersonasAPI.Controllers
 {
 
-    [Route("api/[controller]")]
+    //[Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     [AllowAnonymous]
     public class HijoController : Controller
@@ -23,7 +24,7 @@ namespace PersonasAPI.Controllers
         }
 
 
-        [HttpPost("Filtrar/{id:int}")]
+        [HttpGet("Filtrar/{id:int}")]
         public List<HijoEntity> Filtrarhijo(int id)
         {
 
@@ -32,7 +33,7 @@ namespace PersonasAPI.Controllers
         }
 
 
-        [HttpPost("Registrar")]
+        [HttpPost]
         public string Registrar([FromBody] HijoEntity entidad)
         {
 
