@@ -52,8 +52,8 @@ namespace PersonasAPI.Controllers
         [HttpPut("Modificar")]
         public string Modificar([FromBody] HijoEntity entidad)
         {
-            HijoBussiness oPersona = new HijoBussiness();
-            return oPersona.Modificar(entidad);
+            HijoBussiness oHijo = new HijoBussiness();
+            return oHijo.Modificar(entidad);
         }
 
 

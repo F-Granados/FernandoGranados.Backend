@@ -141,7 +141,7 @@ namespace Data
             cmd.Parameters.Add(new SqlParameter("@fchnac", SqlDbType.DateTime)).Value = DateTime.Parse(entidad.FchNac);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.ExecuteNonQuery();
-            return "Modificacion exitosa";
+            return "Modificacion exitosa"; 
         }
 
 
